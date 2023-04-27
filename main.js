@@ -4,10 +4,14 @@ let body = document.querySelector('body')
 const buttonClicked = () => {
     console.log('Button Clicked')
 
-    axios.get(`https://swapi.dev/api/planets/?search=Alderaan/`)
+    axios.get(`https://swapi.dev/api/planets/?search=Alderaan`)
         .then((res) => {
-            for (let i =0; i < res.data.results[0].residents.length; i++) {
-                axios.get(res.data.results[0].resdients[1])
+
+            let variable = res.data.results[0].residents
+
+            console.log(variable)
+            for (let i =0; i < variable.length; i++) {
+                axios.get(variable[i])
                     .then(res => {
                         let name = res.data.name
                         let resident = document.createElement('h2')
